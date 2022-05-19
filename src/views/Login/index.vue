@@ -78,7 +78,6 @@ export default {
           this.success();
           this.$store.state.isLogin = true;
           this.$store.state.loginStatus = true;
-
           localStorage.setItem("cookie", item.cookie);
           localStorage.setItem("avatar", item.profile.avatarUrl);
           localStorage.setItem("userId", item.profile.userId);

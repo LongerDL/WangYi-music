@@ -16,7 +16,7 @@ export default new Vuex.Store({
     // 用户基本信息
     profile: {
       nickName: "请登录",
-      avatar: require("../assets/img/avatar.png"),
+      avatar: "../assets/img/avatar.png",
       userId: "",
       backgroundUrl: "",
       level: "",
