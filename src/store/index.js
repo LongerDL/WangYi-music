@@ -102,15 +102,15 @@ export default new Vuex.Store({
     // },
   },
   getters: {
-    getAvatar(state) {
-      let avatar = "";
-      if (localStorage.getItem("avatar")) {
-        avatar = localStorage.getItem("avatar");
-        return avatar;
-      }
-      avatar = state.user && state.user.profile.avatarUrl;
-      return avatar;
-    },
+    // getAvatar(state) {
+    //   let avatar = "";
+    //   if (localStorage.getItem("avatar")) {
+    //     avatar = localStorage.getItem("avatar");
+    //     return avatar;
+    //   }
+    //   avatar = state.user && state.user.profile.avatarUrl;
+    //   return avatar;
+    // },
     getNickName(state) {
       let nickName = "";
       if (localStorage.getItem("nickName")) {
