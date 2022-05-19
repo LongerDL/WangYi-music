@@ -80,8 +80,8 @@ export default {
           this.$store.state.loginStatus = true;
           localStorage.setItem("cookie", item.cookie);
           // localStorage.setItem("avatar", item.profile.avatarUrl);
-          localStorage.setItem("userId", item.profile.userId);
-          localStorage.setItem("nickName", item.profile.nickname);
+          // localStorage.setItem("userId", item.profile.userId);
+          // localStorage.setItem("nickName", item.profile.nickname);
 
           //路由跳转
           this.$router.push({ name: "recommend" });
