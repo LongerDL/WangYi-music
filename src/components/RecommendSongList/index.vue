@@ -13,7 +13,7 @@
           <span class="iconfont icon-bofang"></span>
           {{ item.trackCount + "万" }}
         </div>
-        <img :src="item.picUrl" alt="" class="picImg" />
+        <img v-lazy="item.picUrl" alt="" class="picImg" />
         <!-- 底部文字 -->
         <div class="footer-text">
           {{ item.name }}

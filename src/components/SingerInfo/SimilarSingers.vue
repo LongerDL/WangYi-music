@@ -9,7 +9,7 @@
         @click="toSingerInfo(item)"
       >
         <div class="singer-img">
-          <img :src="item.picUrl" alt="" />
+          <img v-lazy="item.picUrl" alt="" />
         </div>
         <div class="singer-name">
           <span>{{ item.name }}</span>

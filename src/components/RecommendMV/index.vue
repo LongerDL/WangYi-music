@@ -15,7 +15,7 @@
         <span class="iconfont icon-bofang1"></span>
         <span>{{ item.playCount }}</span>
       </div>
-      <img :src="item.picUrl" alt="" />
+      <img v-lazy="item.picUrl" alt="" />
       <div class="footer-text">
         <span>{{ item.name }}</span>
         <span class="sub-title">{{ item.artistName }}</span>

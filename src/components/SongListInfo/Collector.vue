@@ -2,7 +2,7 @@
   <div class="collector-container">
     <div class="collector" v-for="item in subscribers" :key="item.userId">
       <div class="avatar-container">
-        <img :src="item.avatarUrl" alt="" />
+        <img v-lazy="item.avatarUrl" alt="" />
       </div>
       <div class="nickname">
         <span>{{ item.nickname }}</span>

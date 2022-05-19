@@ -1,13 +1,13 @@
 <template>
   <div class="comment-container">
-    <h3>{{commentName}}评论({{ commentData && commentData.length }})</h3>
+    <h3>{{ commentName }}评论({{ commentData && commentData.length }})</h3>
     <div
       class="comment-content"
       v-for="item in commentData"
       :key="item.commentId"
     >
       <div class="avatar">
-        <img :src="item.user.avatarUrl" alt="" />
+        <img v-lazy="item.user.avatarUrl" alt="" />
       </div>
       <div class="comment-info">
         <div class="nickname-comment">
@@ -33,7 +33,7 @@
 <script>
 export default {
   name: "Comment",
-  props: ["commentData","commentName"],
+  props: ["commentData", "commentName"],
 };
 </script>
 

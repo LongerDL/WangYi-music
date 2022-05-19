@@ -11,7 +11,7 @@
         <span>{{ item.playCount }}</span>
         <span class="play-time">{{ item.time }}</span>
       </div>
-      <img :src="item.imgurl" alt="" />
+      <img v-lazy="item.imgurl" alt="" />
       <div class="footer-text">
         {{ item.name }}
       </div>

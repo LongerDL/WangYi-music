@@ -5,7 +5,7 @@
       <div class="icon-content">
         <span class="iconfont icon-bofang1"></span>
       </div>
-      <img :src="item.sPicUrl" alt="" />
+      <img v-lazy="item.sPicUrl" alt="" />
       <div class="footer-text">
         {{ item.name }}
       </div>
