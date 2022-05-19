@@ -1,18 +1,43 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <RouterList :routerList="routerList" />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import RouterList from "../components/RouterList";
 export default {
-  name: 'HomeView',
+  data() {
+    return {
+      routerList: [
+        {
+          title: "个性推荐",
+          name: "recommend",
+        },
+        {
+          title: "歌单",
+          name: "songmenu",
+        },
+        {
+          title: "排行榜",
+          name: "ranklist",
+        },
+        {
+          title: "歌手",
+          name: "singers",
+        },
+      ],
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    RouterList,
+  },
+};
 </script>
+
+<style lang="scss" scoped>
+.home {
+  padding-top: 60px;
+}
+</style>

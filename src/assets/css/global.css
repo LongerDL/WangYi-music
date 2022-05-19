@@ -1,0 +1,100 @@
+/* 全局样式表 */
+html,
+body,
+#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+/* 全局字体调控 */
+.fz-10 {
+  font-size: 10px;
+}
+.fz-12 {
+  font-size: 12px;
+}
+.fz-14 {
+  font-size: 14px;
+}
+.fz-16 {
+  font-size: 16px;
+}
+.fz-18 {
+  font-size: 18px;
+}
+.fz-24 {
+  font-size: 24px;
+}
+
+.f-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-2 {
+  text-indent: 2em;
+}
+
+.text-line {
+  line-height: 1.5em;
+}
+.fc-gray {
+  color: rgb(159, 159, 159);
+}
+.fc-darkgray {
+  color: rgb(103, 103, 103);
+}
+.fc-white {
+  color: rgb(255, 255, 255);
+}
+.fc-smokegray {
+  color: rgb(224, 224, 224);
+}
+.fc-a {
+  color: #507daf;
+}
+
+.fw-blod {
+  font-weight: bold;
+}
+
+.lh-14 {
+  line-height: 14px;
+}
+/* 点击 */
+.click-inline {
+  cursor: pointer;
+  display: inline;
+}
+
+.click-block {
+  cursor: pointer;
+}
+
+.mgr-10 {
+  margin-right: 10px;
+}
+
+.mgr-20 {
+  margin-right: 20px;
+}
+
+.dual {
+  background: #f9f9f9 !important;
+}
+
+ul,li {
+  list-style: none;
+}
+a {
+  list-style: none;
+  text-decoration: none;
+}
