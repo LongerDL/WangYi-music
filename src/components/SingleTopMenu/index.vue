@@ -13,7 +13,7 @@
           <span class="iconfont icon-bofang"></span>
           {{ item.trackCount + "万" }}
         </div>
-        <img :src="item.coverImgUrl" alt="" class="picImg" />
+        <img v-lazy="item.coverImgUrl" alt="" class="picImg" />
         <!-- 底部文字 -->
         <div class="footer-text">
           {{ item.name }}
@@ -78,6 +78,7 @@ export default {
         width: 100%;
         height: 100%;
         border-radius: 5px;
+        position: relative;
       }
       .footer-text {
         width: 100%;
@@ -86,6 +87,9 @@ export default {
         overflow: hidden;
         text-overflow: ellipsis;
       }
+    }
+    .single-song-menu:hover {
+      color: #ec4141;
     }
   }
 }

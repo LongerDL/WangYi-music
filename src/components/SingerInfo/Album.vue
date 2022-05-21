@@ -13,7 +13,10 @@
       >
         <audio :src="item.url" ref="music"></audio>
         <div class="song-name">
-          <span v-text="index < 10 ? '0' + index : index"></span>
+          <div class="number">
+            <span v-if="index < 9">0</span>
+            <span>{{ index + 1 }}</span>
+          </div>
           <span
             :class="[
               'iconfont',
@@ -114,6 +117,11 @@ export default {
       }
       .song-name {
         width: 80%;
+        display: flex;
+        .number {
+          margin: 0 5px;
+          padding-left: 5px;
+        }
         & > span {
           margin: 0 5px;
           cursor: default;
@@ -125,6 +133,9 @@ export default {
           font-size: 20px;
           margin-left: -2px;
         }
+      }
+      .song-time {
+        color: #999;
       }
       .singer-name,
       .alumb {

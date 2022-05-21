@@ -30,7 +30,7 @@ export default {
     //从vuex获取当前歌单的相关信息
     this.songMenuInfo = this.$store.state.currentMenuInfo;
     await getSubscribers(this.songMenuInfo.id).then((res) => {
-      console.log(res.data.subscribers);
+      // console.log(res.data.subscribers);
       this.subscribers = res.data.subscribers;
     });
   },

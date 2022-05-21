@@ -4,7 +4,7 @@
     <div class="top-container" v-for="item in officialTop" :key="item.id">
       <!-- 排行榜图片 -->
       <div class="top-img">
-        <img :src="item.coverImgUrl" alt="" />
+        <img v-lazy="item.coverImgUrl" alt="" />
       </div>
       <!-- 排行榜前五首歌曲 -->
       <div class="songs">

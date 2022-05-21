@@ -8,6 +8,6 @@ const request = axios.create({
   headers: {
     "Content-Type": "application/json; charset=UTF-8;",
   },
-  timeout: 15000, //请求时间
+  timeout: 12000, //请求时间
 });
 export default request;

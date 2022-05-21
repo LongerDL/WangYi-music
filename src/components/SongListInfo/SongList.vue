@@ -9,7 +9,10 @@
     >
       <audio :src="item.url" ref="music"></audio>
       <div class="song-name">
-        <span v-text="index < 10 ? '0' + index : index"></span>
+        <div class="number">
+          <span v-if="index < 9">0</span>
+          <span>{{ index + 1 }}</span>
+        </div>
         <span
           :class="[
             'iconfont',
@@ -49,8 +52,9 @@ export default {
   data() {
     return {
       musicArr: [], //有url的歌曲
-      preMusicIndex: undefined, //设置第一次上一首歌的索引为undefined
+      // preMusicIndex: undefined, //设置第一次上一首歌的索引为undefined
       songMenuInfo: null, //当前歌单的介绍信息
+      currentMusic: null, //当前播放音乐
     };
   },
   async created() {
@@ -86,15 +90,24 @@ export default {
   },
   methods: {
     playMusic(index) {
-      //上一首歌曲的索引如果没有并且上一首歌的索引不等于当前歌曲的索引就让上一首歌暂停
-      if (this.preMusicIndex !== undefined && this.preMusicIndex !== index) {
-        this.$refs.music[this.preMusicIndex].pause();
-        console.log(this.$refs.music);
-      }
-      //至此让下一首歌播放
-      this.$refs.music[index].play();
-      console.log(this.$refs.music[index], "this.$refs.music[index]");
-      this.preMusicIndex = index;
+      this.$store.commit("setCurrentMusic", { ...this.musicArr[index], index });
+      this.$store.commit("setMusicList", this.musicArr);
+    },
+  },
+  computed: {
+    isPlayChange() {
+      return this.$store.state.musicIsPlay;
+    },
+    songInfoChange() {
+      return this.$store.state.currentMusic;
+    },
+  },
+  watch: {
+    songInfoChange: {
+      handler() {
+        this.currentMusic = this.songInfoChange;
+      },
+      deep: true,
     },
   },
 };
@@ -120,6 +133,9 @@ export default {
       width: 40%;
       display: flex;
       align-items: flex-end;
+      .number {
+        margin: 0 5px;
+      }
       & > span {
         margin-left: 5px;
         cursor: default;
@@ -137,6 +153,9 @@ export default {
         }
       }
     }
+    .song-time {
+      color: #999;
+    }
     .singer-name,
     .alumb {
       width: 30%;
@@ -144,6 +163,7 @@ export default {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      color: #333;
     }
   }
   .single-song:nth-child(2n + 1) {

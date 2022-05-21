@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 //实现vuex数据持久化存储的插件
 import persistedState from "vuex-persistedstate";
+import src1 from "../assets/img/top50.jpg";
 // import { _getSongDetail, _getSongUrl } from "@/api/songs.js";
 // import { _getHotSongs } from "@/api";
 
@@ -22,19 +23,7 @@ export default new Vuex.Store({
       level: "",
       listenSongs: "",
     },
-    isPlay: false,
     recentPlayFirst: true,
-    currentMusic: {
-      id: 0,
-      name: "请选择歌曲",
-      singer: "xxx",
-      imgUrl: require("../assets/img/top50.jpg"),
-      currentTime: 0,
-      duration: 0, //歌曲时长
-      durationString: "", //歌曲时长 分：秒 形式
-      isLike: false,
-      url: "",
-    },
     isShowPlayList: false, //是否显示播放列表
     currentPlayList: [],
     currentIndex: 0, //当前播放歌曲在播放列表的位置
@@ -45,6 +34,22 @@ export default new Vuex.Store({
     bestSongsMenu: null, //歌单路由下的当前精选歌单
     mvInfo: null, //mv的简介信息
     topsInfo: [], //榜单信息
+    musicIsPlay: false, //歌曲是否播放
+    currentMusic: {
+      id: "0",
+      name: "请选择歌曲",
+      ar: [{ name: "xxx" }],
+      al: {
+        picUrl: src1,
+      },
+      currentTime: 0,
+      duration: 0, //歌曲时长
+      durationString: "", //歌曲时长 分：秒 形式
+      isLike: false,
+      url: "",
+      index: 0,
+    }, //设置当前播放音乐的信息
+    musicList: [], //歌单的歌曲列表
   },
   mutations: {
     //获取当前歌手的id
@@ -69,6 +74,21 @@ export default new Vuex.Store({
     //设置榜单信息
     settopsInfo(state, topsInfo) {
       state.topsInfo = topsInfo;
+    },
+    //设置当前播放音乐的信息
+    setCurrentMusic(state, musicInfo) {
+      state.currentMusic = musicInfo;
+      // console.log("vuex的", musicInfo);
+    },
+    //改变音乐播放状态
+    changeIsPlay(state, isPlay) {
+      state.musicIsPlay = isPlay;
+      // console.log("musicIsPlay改变为", isPlay);
+    },
+    //设置音乐播放列表
+    setMusicList(state, musicArr) {
+      state.musicList = musicArr;
+      // console.log("vuexd", musicArr);
     },
 
     // changeMusicState(state, id) {

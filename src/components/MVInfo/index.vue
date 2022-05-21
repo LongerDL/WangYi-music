@@ -2,7 +2,7 @@
   <div class="mv-info">
     <!-- 左侧mv视频以及评论等信息 -->
     <div class="left-container">
-      <h2 class="title" @click="$router.back()">&lt;MV详情</h2>
+      <span class="title" @click="$router.back()">&lt;MV详情</span>
       <div class="video-play">
         <video :src="mvUrl" autoplay controls>您的浏览器不支持该属性</video>
       </div>
@@ -171,6 +171,10 @@ export default {
     width: 65%;
     .title {
       cursor: pointer;
+      font-size: 24px;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 20px;
     }
     .video-play {
       width: 100%;

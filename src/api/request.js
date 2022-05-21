@@ -8,7 +8,7 @@ export function request(config) {
     // baseURL: "http://localhost:3000",
     baseURL: "https://netease-cloud-music-api-rho-roan.vercel.app/",
     // 请求时间
-    timeout: 15000,
+    timeout: 12000,
     withCredentials: true, //跨域请求时发送cookie
     // headers: {
     //   "Content-Type": "application/json; charset=UTF-8;",

@@ -1,7 +1,7 @@
 import request from "../utils/request";
 
 // 获取推荐歌单的详情
-export function bestMenu(id, limit, offset) {
+export function bestMenu(id, limit = 60, offset) {
   return request({
     // url: "/playlist/track/all",
     url: "/playlist/track/all",
