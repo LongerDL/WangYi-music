@@ -46,7 +46,7 @@ export default {
     return {
       form: {
         phone: "18202760253",
-        password: "Ldl201613",
+        password: "L18202760253",
       },
       rules: {
         username: [

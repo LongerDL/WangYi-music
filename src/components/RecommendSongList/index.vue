@@ -43,22 +43,24 @@ export default {
 
 <style lang="scss" scoped>
 .recommend-song-list {
+  width: 100%;
   & > a {
     color: #000;
     font-size: 24px;
     font-weight: 600;
-    margin-left: 12px;
+    margin-left: 10px;
   }
   .song-menu {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
     .single-song-menu {
-      width: 155px;
-      height: 155px;
+      width: 170px;
+      height: 170px;
       border-radius: 5px;
-      margin: 20px 10px;
+      margin: 20px 5px;
       cursor: pointer;
       position: relative;
       .play-count {

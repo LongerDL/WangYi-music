@@ -45,6 +45,14 @@
 
     <!-- 歌手相关信息 -->
     <div class="singers-info">
+      <div class="progress">
+        <el-progress
+          type="circle"
+          :percentage="dlProgress"
+          :width="200"
+          v-if="singers.length === 0"
+        ></el-progress>
+      </div>
       <div
         class="singers"
         v-for="item in singers"
@@ -118,6 +126,7 @@ export default {
       ],
       singers: [],
       languArea: { area: -1, sex: -1, character: -1 }, //结合语言和地区同时对歌手分类
+      dlProgress: 0, //进度条初始默认值为0
     };
   },
   async created() {

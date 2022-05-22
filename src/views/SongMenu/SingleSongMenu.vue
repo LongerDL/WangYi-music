@@ -2,12 +2,12 @@
   <div class="best-songs-menu">
     <div class="song-menu">
       <img
-        :src="songMenu && songMenu.coverImgUrl"
+        v-lazy="songMenu && songMenu.coverImgUrl"
         alt=""
         class="song-menu-img"
       />
       <div class="single-song-menu">
-        <img :src="songMenu && songMenu.coverImgUrl" alt="" class="picImg" />
+        <img v-lazy="songMenu && songMenu.coverImgUrl" alt="" class="picImg" />
         <div class="best-button">
           <span class="iconfont icon-huangguan"></span>
           <span>精品歌单</span>

@@ -1,6 +1,6 @@
 <template>
   <div class="exclusive-content">
-    <h3 class="title">{{ title }} ></h3>
+    <h3 class="title">{{ title + ">" }}</h3>
     <div v-for="item in exclusiveArr" :key="item.id" class="exclusive">
       <div class="icon-content">
         <span class="iconfont icon-bofang1"></span>

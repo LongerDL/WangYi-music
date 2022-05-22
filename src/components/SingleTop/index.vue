@@ -7,6 +7,14 @@
         <img v-lazy="item.coverImgUrl" alt="" />
       </div>
       <!-- 排行榜前五首歌曲 -->
+      <div class="progress">
+        <el-progress
+          type="circle"
+          :percentage="dlProgress"
+          :width="200"
+          v-if="officialTop.length === 0"
+        ></el-progress>
+      </div>
       <div class="songs">
         <div
           class="single-song"
@@ -39,11 +47,19 @@ export default {
     return {
       officialTop: [], //官方榜单
       preMusicIndex: undefined, //设置第一次上一首歌的索引为undefined
+      dlProgress: 0, //进度条初始默认值为0
     };
   },
   async created() {
+    const timer = setInterval(() => {
+      this.dlProgress++;
+      if (this.officialTop.length === 0 || this.officialTop != null) {
+        this.dlProgress = 100;
+        clearInterval(timer);
+      }
+    }, 50);
     this.officialTop = this.$store.state.topsInfo.slice(0, 4);
-    this.officialTop = await Promise.all(
+    await Promise.all(
       this.officialTop.map(async (item) => {
         await getMenuDetail(item.id).then((res) => {
           //获取榜单前五首歌曲
@@ -57,7 +73,9 @@ export default {
         });
         return item;
       })
-    );
+    ).then((res) => {
+      this.officialTop = res;
+    });
     // console.log(this.officialTop);
   },
   methods: {
@@ -94,6 +112,7 @@ export default {
     display: flex;
     align-items: center;
     margin: 10px auto;
+    position: relative;
     .top-img {
       width: 200px;
       height: 200px;
@@ -103,6 +122,13 @@ export default {
         border-radius: 5px;
         object-fit: cover;
       }
+    }
+    .progress {
+      width: 200px;
+      height: 200px;
+      top: calc(50% - 100px);
+      left: calc(50% - 100px);
+      position: absolute;
     }
     .songs {
       width: 80%;

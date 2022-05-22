@@ -4,6 +4,7 @@ module.exports = defineConfig({
   lintOnSave: false,
   devServer: {
     hot: true,
+    port: 4399,
     proxy: {
       "/api": {
         // target: "http://localhost:3000 ", //这是服务器地址，设置反向代理是为了避免出现跨域

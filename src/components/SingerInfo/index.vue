@@ -3,7 +3,7 @@
     <!-- 歌手简介 -->
     <div class="singer-info">
       <div class="singer-img">
-        <img :src="singerBriefInfo && singerBriefInfo.cover" alt="" />
+        <img v-lazy="singerBriefInfo && singerBriefInfo.cover" alt="" />
       </div>
       <div class="singer-brief-info">
         <h2>{{ singerBriefInfo && singerBriefInfo.name }}</h2>

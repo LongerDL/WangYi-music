@@ -2,7 +2,7 @@
   <el-carousel :interval="4000" type="card" height="230px">
     <el-carousel-item v-for="(item, index) in imgList" :key="index">
       <!-- <h3 class="medium">{{ item }}</h3> -->
-      <img :src="item.imageUrl" class="bannerImg" alt="" />
+      <img v-lazy="item.imageUrl" class="bannerImg" alt="" />
     </el-carousel-item>
   </el-carousel>
 </template>

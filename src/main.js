@@ -6,7 +6,6 @@ import store from "./store";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import VueLazyLoad from "vue-lazyload";
-import VueMeta from "vue-meta";
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
@@ -14,10 +13,6 @@ Vue.use(VueLazyLoad, {
   preLoad: 1,
   error: require("./assets/img/loading.gif"),
   loading: require("./assets/img/loading.gif"),
-});
-Vue.use(VueMeta, {
-  keyName: "metaInfo",
-  refreshOnceOnNavigation: true,
 });
 
 //全局路由守卫，没有登录就不可访问页面

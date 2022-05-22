@@ -5,6 +5,14 @@
       <img src="@/assets/img/top50.jpg" alt="" />
     </div>
     <div class="songs-top">
+      <div class="progress">
+        <el-progress
+          type="circle"
+          :percentage="dlProgress"
+          :width="200"
+          v-if="hotSongs.length === 0"
+        ></el-progress>
+      </div>
       <div
         class="single-song"
         v-for="(item, index) in hotSongs"
@@ -51,9 +59,17 @@ export default {
       singerId: undefined, //歌手id
       singerBriefInfo: null, //歌手简介
       hotSongs: [], //热门歌曲列表
+      dlProgress: 0, //进度条初始默认值为0
     };
   },
   async created() {
+    const timer = setInterval(() => {
+      this.dlProgress++;
+      if (this.hotSongs.length === 0 || this.hotSongs != null) {
+        this.dlProgress = 100;
+        clearInterval(timer);
+      }
+    }, 50);
     this.singerId = this.$store.state.currentSingerId;
     //hotSongs是获得的50首热门歌曲
     const hotSongs = await getHotSongs(this.singerId);
@@ -73,8 +89,9 @@ export default {
         item.isDownLoad = false;
         return item;
       })
-    );
-    this.hotSongs = musicArr;
+    ).then((res) => {
+      this.hotSongs = res;
+    });
     // console.log(this.hotSongs, "hotSongs...");
   },
   methods: {
@@ -96,6 +113,7 @@ export default {
   margin-bottom: 20px;
   display: flex;
   justify-content: flex-end;
+  position: relative;
   .top-img {
     width: 200px;
     height: 200px;
@@ -104,6 +122,13 @@ export default {
   .songs-top {
     width: 70%;
     margin-right: 100px;
+    .progress {
+      width: 200px;
+      height: 200px;
+      top: calc(50% - 100px);
+      left: calc(50% - 100px);
+      position: absolute;
+    }
     .single-song {
       display: flex;
       justify-content: space-between;
