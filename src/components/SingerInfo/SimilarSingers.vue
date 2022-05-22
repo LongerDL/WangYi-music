@@ -1,5 +1,6 @@
 <template>
   <div class="similar-singers">
+    <Loading :dataArr="similarSingers" />
     <!-- 歌手相关信息 -->
     <div class="singers-info">
       <div
@@ -25,12 +26,16 @@
 
 <script>
 import { getSimilarSingers } from "@/api";
+import Loading from "@/components/Loading";
 export default {
   name: "SimilarSingers",
   data() {
     return {
       similarSingers: [], //相似歌手
     };
+  },
+  components: {
+    Loading,
   },
   async created() {
     //得到当前歌手的id
@@ -57,34 +62,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.singers-info {
-  margin: 10px 30px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  .singers {
-    width: 200px;
-    height: 200px;
-    margin: 0 10px;
-    cursor: pointer;
-    .singer-img {
-      & > img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 5px;
+.similar-singers {
+  position: relative;
+  .singers-info {
+    margin: 10px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    .singers {
+      width: 200px;
+      height: 200px;
+      margin: 0 10px;
+      cursor: pointer;
+      .singer-img {
+        & > img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 5px;
+        }
       }
-    }
-    .singer-name {
-      display: flex;
-      justify-content: space-between;
-      & > span {
-        display: inline-block;
-      }
-      .change-red {
-        color: #ec4141;
-        font-size: 20px;
+      .singer-name {
+        display: flex;
+        justify-content: space-between;
+        & > span {
+          display: inline-block;
+        }
+        .change-red {
+          color: #ec4141;
+          font-size: 20px;
+        }
       }
     }
   }

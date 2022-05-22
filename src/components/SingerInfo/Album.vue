@@ -5,14 +5,7 @@
       <img src="@/assets/img/top50.jpg" alt="" />
     </div>
     <div class="songs-top">
-      <div class="progress">
-        <el-progress
-          type="circle"
-          :percentage="dlProgress"
-          :width="200"
-          v-if="hotSongs.length === 0"
-        ></el-progress>
-      </div>
+      <Loading :dataArr="hotSongs" />
       <div
         class="single-song"
         v-for="(item, index) in hotSongs"
@@ -52,6 +45,7 @@
 <script>
 import { formatTime } from "@/utils/format";
 import { getHotSongs, getMusicUrl } from "@/api";
+import Loading from "@/components/Loading";
 export default {
   name: "Album",
   data() {
@@ -59,23 +53,18 @@ export default {
       singerId: undefined, //歌手id
       singerBriefInfo: null, //歌手简介
       hotSongs: [], //热门歌曲列表
-      dlProgress: 0, //进度条初始默认值为0
     };
   },
+  components: {
+    Loading,
+  },
   async created() {
-    const timer = setInterval(() => {
-      this.dlProgress++;
-      if (this.hotSongs.length === 0 || this.hotSongs != null) {
-        this.dlProgress = 100;
-        clearInterval(timer);
-      }
-    }, 50);
     this.singerId = this.$store.state.currentSingerId;
     //hotSongs是获得的50首热门歌曲
     const hotSongs = await getHotSongs(this.singerId);
     this.hotSongs.push(...hotSongs.data.songs);
     // 遍历hotSongs得到每一首歌曲的id
-    const musicArr = await Promise.all(
+    await Promise.all(
       this.hotSongs.map(async (item) => {
         //获取每一首歌的id和音频url
         const musicUrl = await getMusicUrl(item.id);
@@ -96,13 +85,8 @@ export default {
   },
   methods: {
     playMusic(index) {
-      //上一首歌曲的索引如果没有并且上一首歌的索引不等于当前歌曲的索引就让上一首歌暂停
-      if (this.preMusicIndex !== undefined && this.preMusicIndex !== index) {
-        this.$refs.music[this.preMusicIndex].pause();
-      }
-      //至此让下一首歌播放
-      this.$refs.music[index].play();
-      this.preMusicIndex = index;
+      this.$store.commit("setCurrentMusic", { ...this.musicArr[index], index });
+      this.$store.commit("setMusicList", this.musicArr);
     },
   },
 };
@@ -122,13 +106,6 @@ export default {
   .songs-top {
     width: 70%;
     margin-right: 100px;
-    .progress {
-      width: 200px;
-      height: 200px;
-      top: calc(50% - 100px);
-      left: calc(50% - 100px);
-      position: absolute;
-    }
     .single-song {
       display: flex;
       justify-content: space-between;

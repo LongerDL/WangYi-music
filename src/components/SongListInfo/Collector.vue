@@ -1,5 +1,6 @@
 <template>
   <div class="collector-container">
+    <Loading :dataArr="subscribers" />
     <div class="collector" v-for="item in subscribers" :key="item.userId">
       <div class="avatar-container">
         <img v-lazy="item.avatarUrl" alt="" />
@@ -19,12 +20,16 @@
 
 <script>
 import { getSubscribers } from "@/api";
+import Loading from "../Loading";
 export default {
   name: "Collector",
   data() {
     return {
       subscribers: [], //收藏者相关信息
     };
+  },
+  components: {
+    Loading,
   },
   async created() {
     //从vuex获取当前歌单的相关信息
@@ -43,6 +48,7 @@ export default {
   padding: 0 20px;
   display: flex;
   flex-wrap: wrap;
+  position: relative;
   .collector {
     width: 50%;
     margin: 15px auto;

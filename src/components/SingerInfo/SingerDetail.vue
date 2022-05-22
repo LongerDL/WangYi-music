@@ -1,5 +1,6 @@
 <template>
   <div class="singer-detail">
+    <Loading :dataArr="singerDetail" />
     <!-- 代表作品 -->
     <div
       class="representative-works"
@@ -23,6 +24,7 @@
 
 <script>
 import { getSingerDetail, getSingerInfo } from "@/api";
+import Loading from "@/components/Loading";
 export default {
   name: "SingerDetail",
   data() {
@@ -30,6 +32,9 @@ export default {
       singerDetail: [], //存放歌手的详细信息
       singerName: null, //歌手名字
     };
+  },
+  components: {
+    Loading,
   },
   async created() {
     //先从vuex中获取歌手的id
@@ -53,6 +58,7 @@ export default {
   margin-top: 10px;
   padding-left: 30px;
   margin-bottom: 20px;
+  position: relative;
   .representative-works {
     .art-works {
       text-indent: 32.4px;

@@ -1,5 +1,6 @@
 <template>
   <div class="comment">
+    <Loading :dataArr="hotComment" />
     <div class="hot-comment">
       <Comment :commentData="hotComment" commentName="最热" />
     </div>
@@ -12,10 +13,12 @@
 <script>
 import Comment from "../Comment";
 import { getComments } from "@/api";
+import Loading from "@/components/Loading";
 export default {
   name: "CurComment",
   components: {
     Comment,
+    Loading,
   },
   data() {
     return {
@@ -42,6 +45,7 @@ export default {
 .comment {
   margin: 10px 20px;
   padding: 0 20px;
+  position: relative;
   .latest-comment {
     padding-top: 30px;
   }

@@ -1,5 +1,6 @@
 <template>
   <div class="song-list">
+    <Loading :dataArr="musicArr" />
     <!-- 歌曲列表 -->
     <div
       class="single-song"
@@ -47,6 +48,7 @@
 <script>
 import { getMusicUrl, getBestMenu } from "@/api";
 import { formatTime } from "@/utils/format";
+import Loading from "@/components/Loading";
 export default {
   name: "SongList",
   data() {
@@ -56,6 +58,9 @@ export default {
       songMenuInfo: null, //当前歌单的介绍信息
       currentMusic: null, //当前播放音乐
     };
+  },
+  components: {
+    Loading,
   },
   async created() {
     //从vuex获取当前歌单的相关信息
@@ -116,6 +121,7 @@ export default {
 <style lang="scss" scoped>
 .song-list {
   margin-top: 10px;
+  position: relative;
   .single-song {
     margin: 0 20px;
     display: flex;

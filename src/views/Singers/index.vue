@@ -126,7 +126,7 @@ export default {
       ],
       singers: [],
       languArea: { area: -1, sex: -1, character: -1 }, //结合语言和地区同时对歌手分类
-      dlProgress: 0, //进度条初始默认值为0
+      dlProgress: 20, //进度条初始默认值为20
     };
   },
   async created() {

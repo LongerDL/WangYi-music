@@ -2,6 +2,7 @@ const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
+  publicPath: "./", // 基本路径
   devServer: {
     hot: true,
     port: 4399,

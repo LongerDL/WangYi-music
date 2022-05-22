@@ -48,7 +48,7 @@ export default {
     color: #000;
     font-size: 24px;
     font-weight: 600;
-    margin-left: 10px;
+    margin-left: 9px;
   }
   .song-menu {
     display: flex;

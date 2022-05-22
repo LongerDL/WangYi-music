@@ -1,5 +1,6 @@
 <template>
   <div class="best-songs-menu">
+    <Loading :dataArr="songsMenu" />
     <div class="song-menu">
       <div
         v-for="item in songsMenu"
@@ -24,12 +25,16 @@
 
 <script>
 import { getRelatedMenu } from "@/api";
+import Loading from "@/components/Loading";
 export default {
   name: "SingleSongMenu",
   data() {
     return {
       songsMenu: [],
     };
+  },
+  components: {
+    Loading,
   },
   async mounted() {
     //有关系的歌单

@@ -1,8 +1,7 @@
 <template>
   <div class="tops">
-    
     <SingleTop :topArr="topArr" />
-    
+
     <SingleTopMenu />
   </div>
 </template>
@@ -25,8 +24,8 @@ export default {
   async created() {
     await getTops().then((res) => {
       this.topArr = res.data.list;
+      this.$store.commit("setTopsInfo", this.topArr);
     });
-    this.$store.commit("settopsInfo", this.topArr);
   },
 };
 </script>

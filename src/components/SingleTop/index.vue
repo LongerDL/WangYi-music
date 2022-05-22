@@ -7,14 +7,7 @@
         <img v-lazy="item.coverImgUrl" alt="" />
       </div>
       <!-- 排行榜前五首歌曲 -->
-      <div class="progress">
-        <el-progress
-          type="circle"
-          :percentage="dlProgress"
-          :width="200"
-          v-if="officialTop.length === 0"
-        ></el-progress>
-      </div>
+      <Loading :dataArr="officialTop" />
       <div class="songs">
         <div
           class="single-song"
@@ -40,24 +33,20 @@
 
 <script>
 import { getMenuDetail, getMusicUrl } from "@/api";
+import Loading from "@/components/Loading";
 export default {
   name: "SingleTop",
   props: ["topArr"],
+  components: {
+    Loading,
+  },
   data() {
     return {
       officialTop: [], //官方榜单
       preMusicIndex: undefined, //设置第一次上一首歌的索引为undefined
-      dlProgress: 0, //进度条初始默认值为0
     };
   },
   async created() {
-    const timer = setInterval(() => {
-      this.dlProgress++;
-      if (this.officialTop.length === 0 || this.officialTop != null) {
-        this.dlProgress = 100;
-        clearInterval(timer);
-      }
-    }, 50);
     this.officialTop = this.$store.state.topsInfo.slice(0, 4);
     await Promise.all(
       this.officialTop.map(async (item) => {
@@ -91,14 +80,20 @@ export default {
       this.preMusicIndex = index;
     },
   },
-  // watch: {
-  //   topArr: {
-  //     handler(newVal) {
-  //       //前四个为官方榜单
-  //       this.officialTop = newVal.slice(0, 4);
-  //     },
-  //   },
-  // },
+  computed: {
+    officialTopChange() {
+      return this.$store.state.topsInfo.slice(0, 4);
+    },
+  },
+  watch: {
+    officialTopChange: {
+      handler(newVal) {
+        //前四个为官方榜单
+        this.officialTop = newVal.slice(0, 4);
+      },
+      immediate: true,
+    },
+  },
 };
 </script>
 

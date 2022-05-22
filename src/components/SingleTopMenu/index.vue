@@ -25,6 +25,7 @@
 
 <script>
 import { getMenuDetail } from "@/api";
+import Loading from "@/components/Loading";
 export default {
   name: "SingleTopMenu",
   props: ["songMenu"],
@@ -32,6 +33,9 @@ export default {
     return {
       topsInfo: [], //排行榜单数据
     };
+  },
+  components: {
+    Loading,
   },
   async created() {
     this.topsInfo = this.$store.state.topsInfo.slice(4, 32);
@@ -45,6 +49,20 @@ export default {
       //给vuex设置当前歌单的信息
       this.$store.commit("setMenuInfo", menuDetail.data.playlist);
       this.$router.push({ name: "songListInfo", query: { id: item.id } });
+    },
+  },
+  computed: {
+    topsInfoChange() {
+      return this.$store.state.topsInfo.slice(4, 32);
+    },
+  },
+  watch: {
+    topsInfoChange: {
+      handler(newVal) {
+        //前四个为官方榜单
+        this.topsInfo = newVal.slice(4, 32);
+      },
+      immediate: true,
     },
   },
 };

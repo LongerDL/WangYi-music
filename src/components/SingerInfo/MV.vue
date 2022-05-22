@@ -1,5 +1,6 @@
 <template>
   <div class="singer-mv">
+    <Loading :dataArr="singerMV" />
     <div
       v-for="item in singerMV"
       :key="item.id"
@@ -22,6 +23,7 @@
 <script>
 import { getSingerMV } from "@/api";
 import { formatTime } from "@/utils/format";
+import Loading from "@/components/Loading";
 export default {
   name: "MV",
   data() {
@@ -29,6 +31,9 @@ export default {
       limit: 32, //获取mv的上限数
       singerMV: [], //歌手的mv
     };
+  },
+  components: {
+    Loading,
   },
   async created() {
     const singerId = this.$store.state.currentSingerId;
@@ -64,6 +69,7 @@ export default {
   margin-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
+  position: relative;
   .mv {
     width: 290px;
     position: relative;

@@ -72,7 +72,7 @@ export default new Vuex.Store({
       state.mvInfo = MVInfo;
     },
     //设置榜单信息
-    settopsInfo(state, topsInfo) {
+    setTopsInfo(state, topsInfo) {
       state.topsInfo = topsInfo;
     },
     //设置当前播放音乐的信息
