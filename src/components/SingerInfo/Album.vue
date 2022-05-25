@@ -85,8 +85,8 @@ export default {
   },
   methods: {
     playMusic(index) {
-      this.$store.commit("setCurrentMusic", { ...this.musicArr[index], index });
-      this.$store.commit("setMusicList", this.musicArr);
+      this.$store.commit("setCurrentMusic", { ...this.hotSongs[index], index });
+      this.$store.commit("setMusicList", this.hotSongs);
     },
   },
 };
